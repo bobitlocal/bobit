@@ -14,5 +14,5 @@
          vmid: "{{ proxmox_vmid }}"
          disk: scsi0
          size: +5G
-         state: Resized
+         state: resized
 ...
