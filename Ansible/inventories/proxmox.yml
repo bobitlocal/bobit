@@ -1,3 +1,4 @@
+plugin: "community.general.proxmox"
 url: https://10.131.9.110:8006
 user: root@pam
 password: Pa55.wrd
