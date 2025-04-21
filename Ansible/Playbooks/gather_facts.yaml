@@ -2,4 +2,8 @@
 - name: Addition of harddisk space to vm
   become: true
   gather_facts: true
+  tasks:
+
+  - debug:
+      var: hostvars[inventory_hostname]
 ...
