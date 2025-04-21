@@ -12,5 +12,7 @@
          api_user: root@pam
          api_password: Pa55w.rd
          vmid: "{{ proxmox_vmid }}"
-         disk: ""
+         disk: scsi0
+         size: +5G
+         state: Resized
 ...
