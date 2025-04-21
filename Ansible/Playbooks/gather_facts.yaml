@@ -1,6 +1,6 @@
 ---      
 - name: Addition of harddisk space to vm
-  hosts: DKTON01CA01
+  hosts: DKTON01ZAB01
   become: true
   gather_facts: true
   tasks:
