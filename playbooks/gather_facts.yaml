@@ -1,0 +1,10 @@
+---      
+- name: Addition of harddisk space to vm
+  hosts: DKTON01ZAB01
+  become: true
+  gather_facts: true
+  tasks:
+
+  - debug:
+      var: hostvars[inventory_hostname]
+...
