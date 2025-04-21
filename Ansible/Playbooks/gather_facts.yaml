@@ -1,7 +1,5 @@
----
-         
+---      
 - name: Addition of harddisk space to vm
   become: true
   gather_facts: true
-
 ...
