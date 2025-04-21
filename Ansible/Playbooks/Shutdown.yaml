@@ -10,20 +10,4 @@
        community.general.shutdown:
          msg: "Illegal action detected, shutting down immedieatly"
          delay: 5
-
-         
-- name: Addition of harddisk space to vm
-  become: true
-  vars:
-    ansible_become_pass: Pa55w.rd
-  hosts: "{{ VM_Missing_Space }}"
-  gather_facts: true
-  tasks:
-    -  name: Resize VM Disk
-       community.general.proxmox_disk:
-         api_host: "{{ proxmox_node }}"
-         api_user: root@pam
-         api_password: Pa55w.rd
-         vmid: "{{ proxmox_vmid }}"
-         disk: ""
 ...
