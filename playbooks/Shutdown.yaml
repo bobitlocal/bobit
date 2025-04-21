@@ -1,0 +1,13 @@
+---
+- name: Shutdown of problem hosts
+  become: true
+  vars:
+    ansible_become_pass: password
+  hosts: "{{ problem_hosts }}"
+  gather_facts: False
+  tasks:
+    -  name: Shutdown the hosts
+       community.general.shutdown:
+         msg: "Illegal action detected, shutting down immedieatly"
+         delay: 5
+...
