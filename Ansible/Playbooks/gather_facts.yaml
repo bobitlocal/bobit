@@ -1,5 +1,6 @@
 ---      
 - name: Addition of harddisk space to vm
+  hosts: ITBOL01CA01
   become: true
   gather_facts: true
   tasks:
