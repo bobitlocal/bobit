@@ -1,1 +1,7 @@
-
+plugin: community.general.proxmox
+url: https://10.131.9.130:8006
+user: root@pam
+password: password
+want_facts: true
+validate_certs: false
+want_proxmox_nodes_ansible_host: false
