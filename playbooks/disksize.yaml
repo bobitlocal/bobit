@@ -1,7 +1,7 @@
 ---
 - name: Addition of harddisk space to vm
   hosts: DKTON01ZAB01
-  gather_facts: true
+  gather_facts: false
   tasks:
     -  name: Resize VM Disk
        community.general.proxmox_disk:
