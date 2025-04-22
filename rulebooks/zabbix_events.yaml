@@ -15,4 +15,15 @@
           job_args:
             extra_vars:
               problem_hosts: "{{ event.payload.host_host }}"
+
+    - name: Run playbook for hosts that have critically low disk space
+      condition: event.payload.trigger_id == 24757
+      action:
+        run_job_template:
+          name: "Low Diskspace"
+          organization: "Bobit.local"
+          job_args:
+            extra_vars:
+              low_diskspace_host: "{{ event.payload.host_host }}"
+              low_diskspace_os: "{{ event.payload.target }}
 ...
