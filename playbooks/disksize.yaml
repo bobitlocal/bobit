@@ -3,11 +3,10 @@
   become: true
   vars:
     ansible_become_pass: Pa55w.rd
-  hosts: DKTON01ZAB01
+  hosts: DKTON01AWX01
   gather_facts: true
   tasks:
     -  name: Resize VM Disk
-       delegate_to: DKTON01AWX01
        community.general.proxmox_disk:
          api_host: DKTON01PVE01
          api_user: root@pam
