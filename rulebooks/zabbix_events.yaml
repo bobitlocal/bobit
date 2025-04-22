@@ -25,5 +25,7 @@
           job_args:
             extra_vars:
               low_diskspace_host: "{{ event.payload.host_host }}"
+              low_diskspace_target: "{{ event.payload.payload.target }}"
           debug:
+            msg: "{{ low_diskspace_host }}"
 ...
