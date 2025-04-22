@@ -16,7 +16,7 @@
             extra_vars:
               problem_hosts: "{{ event.payload.host_host }}"
     - name: Run playbook for hosts that have critically low disk space
-      condition: event.payload.event_name is select ("contains", "Space is critically low")
+      condition: event.payload.event_name contains "Space is critically low"
       action:
         run_job_template:
           name: "Low Diskspace"
