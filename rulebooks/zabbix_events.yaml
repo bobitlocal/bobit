@@ -27,5 +27,5 @@
               low_diskspace_host: "{{ event.payload.host_host }}"
               low_diskspace_target: "{{ event.payload.payload.target }}"
           debug:
-            msg: "{{ low_diskspace_host }}"
+            msg: "{{ low_diskspace_host }} and {{low_diskspace_target}}"
 ...
