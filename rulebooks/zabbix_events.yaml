@@ -24,6 +24,6 @@
           organization: "bobit.local"
           job_args:
             extra_vars:
-              low_diskspace_host: "{{ event.host_host }}"
+              low_diskspace_host: "{{ event.payload.host_host }}"
           debug:
 ...
