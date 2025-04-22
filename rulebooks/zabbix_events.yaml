@@ -15,4 +15,16 @@
           job_args:
             extra_vars:
               low_diskspace_host: "{{ event.payload.host_host }}"
+
+
+    - name: Run playbook for hosts that have a change in installed package
+      condition: event.payload.event_name is select ("==","Number of installed packages has been changed")
+      action:
+        run_job_template:
+          name: "Run Shutdown"
+          organization: "Default"
+          job_args:
+            extra_vars:
+              problem_hosts: "{{ event.payload.host_host }}"
+
 ...
