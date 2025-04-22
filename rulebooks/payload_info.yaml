@@ -10,4 +10,5 @@
       condition: event.payload is defined
       action:
         debug:
+        msg: "{{ event.payload.host_host }}"
 ...
