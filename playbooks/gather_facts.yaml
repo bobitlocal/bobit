@@ -1,6 +1,6 @@
 ---      
 - name: Addition of harddisk space to vm
-  hosts: dkton01zab01
+  hosts: "{{low_diskspace_host}}"
   become: true
   gather_facts: true
   tasks:
