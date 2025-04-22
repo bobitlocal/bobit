@@ -1,6 +1,6 @@
 ---
 - name: Addition of harddisk space to vm
-  hosts: 127.0.0.1
+  hosts: dkton01awx01
   gather_facts: true
   tasks:
     -  name: Resize VM Disk
