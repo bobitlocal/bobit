@@ -19,9 +19,9 @@
     - name: Run playbook for hosts that have critically low disk space
       condition: event.payload.trigger_id is select ("==",24757)
       action:
-          job_args:
-            extra_vars:
-              low_diskspace_host: "{{ event.payload.host_host }}"
+        job_args:
+          extra_vars:
+            low_diskspace_host: "{{ event.payload.host_host }}"
         debug:
           msg: "Hi, I'm {{ event.payload.host_host }}."
 ...
