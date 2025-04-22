@@ -1,5 +1,5 @@
 ---
-- name: Zabbix test rulebook2
+- name: Zabbix test rulebookgrim
   hosts: all
   sources:
     - ansible.eda.webhook:
@@ -15,6 +15,7 @@
           job_args:
             extra_vars:
               problem_hosts: "{{ event.payload.host_host }}"
+              
     - name: Run playbook for hosts that have critically low disk space
       condition: event.payload.trigger_id == 24757
       action:
@@ -25,7 +26,6 @@
               low_diskspace_host: "{{ event.payload.host_host }}"
               low_diskspace_OS: "{{ event.payload.target }}"
               
-  rules:
     - name: debug
       condition: event.payload is defined
       action:
