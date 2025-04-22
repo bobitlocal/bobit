@@ -13,4 +13,21 @@
          disk: scsi0
          size: +5G
          state: resized
+
+- name: Resize the correct disk within the VM
+  host: "{{ low_diskspace_host }}
+  gather_facts: false
+  tasks:
+    - name: Register partition info
+      community.general.parted: device=/dev/sdb unit=MiB
+      register: sdb_info
+      
+    - name: Extend an existing partition to fill all available space
+        community.general.parted:
+        device: /dev/sdb
+        number: "{{ sdb_info.partitions | length }}"
+        part_end: "100%"
+        resize: true
+        state: present
+      where: sdb_info.partiting | length == {{payload size ????}}
 ...
