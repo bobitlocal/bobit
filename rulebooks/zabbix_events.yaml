@@ -22,4 +22,5 @@
         run_job_template:
           name: "Low Diskspace"
           organization: "bobit.local"
+          debug:
 ...
