@@ -1,6 +1,5 @@
 ---
 - name: Addition of harddisk space to vm
-  become: true
   vars:
     ansible_become_pass: Pa55w.rd
   hosts: 127.0.0.1
