@@ -24,10 +24,5 @@
           job_args:
             extra_vars:
               low_diskspace_host: "{{ event.payload.host_host }}"
-              low_diskspace_OS: "{{ event.payload.target }}"
-
-    - name: debug
-      condition: event.payload is defined
-      action:
-        debug:  
+              low_diskspace_OS: "{{ event.payload.target }}
 ...
