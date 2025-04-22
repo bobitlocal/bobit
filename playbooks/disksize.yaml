@@ -3,7 +3,7 @@
   become: true
   vars:
     ansible_become_pass: Pa55w.rd
-  hosts: "{{ VM_Missing_Space }}"
+  hosts: "{{ low_diskspace_host }}"
   gather_facts: true
   tasks:
     -  name: Resize VM Disk
