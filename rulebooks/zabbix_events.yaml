@@ -22,8 +22,4 @@
         run_job_template:
           name: "Low Diskspace"
           organization: "bobit.local"
-          job_args:
-            extra_vars:
-              low_diskspace_host: "{{ event.payload.host_host }}"
-              low_diskspace_os: "{{ event.payload.target }}"
 ...
