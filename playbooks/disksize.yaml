@@ -1,6 +1,8 @@
 ---
 - name: Addition of harddisk space to vm
   hosts: DKTON01ZAB01
+  vars:
+    host: "{{ low_diskspace_host }}"
   gather_facts: false
   tasks:
     -  name: Resize VM Disk
@@ -9,7 +11,7 @@
          api_user: zabbix@pam
          api_token_id: zabbixpermission
          api_token_secret: 8db143c0-52e8-4f13-9d85-cb150f5c852c
-         name: "{{ low_diskspace_host }}"
+         name: "{{ host }}"
          disk: scsi0
          size: +5G
          state: resized
