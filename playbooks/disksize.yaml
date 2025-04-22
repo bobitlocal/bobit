@@ -5,7 +5,7 @@
   tasks:
     -  name: Resize VM Disk
        community.general.proxmox_disk:
-         api_host: 10.131.9.130
+         api_host: 10.131.9.120
          api_user: zabbix@pam
          api_token_id: zabbixpermission
          api_token_secret: 8db143c0-52e8-4f13-9d85-cb150f5c852c
