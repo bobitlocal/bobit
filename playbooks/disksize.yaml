@@ -29,5 +29,5 @@
         part_end: "100%"
         resize: true
         state: present
-      where: sdb_info.partiting | length == {{payload size ????}}
+      when: sdb_info.partiting | length == {{payload size ????}}
 ...
