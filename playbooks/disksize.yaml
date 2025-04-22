@@ -15,7 +15,4 @@
          disk: scsi0
          size: +5G
          state: resized
-  tasks:
-    - debug:
-        msg: "{{ ansible_eda.event }}"
 ...
