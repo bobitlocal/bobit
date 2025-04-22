@@ -7,7 +7,7 @@
        community.general.proxmox_disk:
          api_host: DKTON01PVE01
          api_user: root@pam
-         api_password: Pa55w.rd
+         password: Pa55w.rd
          name: "{{ low_diskspace_host }}"
          disk: scsi0
          size: +5G
