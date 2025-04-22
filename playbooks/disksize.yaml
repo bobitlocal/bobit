@@ -1,6 +1,6 @@
 ---
 - name: Addition of harddisk space to vm
-  hosts: "{{ low_diskspace_host }}"
+  hosts: DKTON01ZAB01
   gather_facts: false
   tasks:
     -  name: Resize VM Disk
