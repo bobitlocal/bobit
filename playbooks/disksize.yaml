@@ -3,7 +3,7 @@
   become: true
   vars:
     ansible_become_pass: Pa55w.rd
-  hosts: DKTON01AWX01
+  hosts: 127.0.0.0
   gather_facts: true
   tasks:
     -  name: Resize VM Disk
