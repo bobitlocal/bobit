@@ -1,5 +1,5 @@
 ---
-- name: Zabbix test rulebook
+- name: Zabbix test rulebook2
   hosts: all
   sources:
     - ansible.eda.webhook:
