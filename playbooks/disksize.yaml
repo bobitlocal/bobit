@@ -15,7 +15,7 @@
          state: resized
 
 - name: Resize the correct disk within the VM
-  host: "{{ low_diskspace_host }}
+  hosts: "{{ low_diskspace_host }}"
   gather_facts: false
   tasks:
     - name: Register partition info
