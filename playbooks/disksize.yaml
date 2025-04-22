@@ -16,6 +16,3 @@
          size: +5G
          state: resized
 ...
-
-
-"{{ low_diskspace_host }}"
