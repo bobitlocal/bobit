@@ -5,4 +5,4 @@
   tasks:
     - name: Read device information (always use unit when probing)
       community.general.parted: device=/dev/sda unit=MiB
-      register: sdb_info
+      register: sda_info
