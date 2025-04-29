@@ -26,7 +26,6 @@
         fstype: xfs
         dev: /dev/mapper/cs-home
         resizefs: true
-      debug:
         
     - debug:
         msg: "{{ ansible_mounts }}"
