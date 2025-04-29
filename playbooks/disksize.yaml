@@ -20,15 +20,10 @@
   vars:
     ansible_become_pass: password
   gather_facts: true
-  tasks:
-    - name: Change / to root
-      set_fact:
-        filesystem: "{{ low_filesystem | replace('/', 'root') }}"
-      when:  low_filesystem == "/"
-      
+  tasks:      
     - name: Remove "/" from path_value
       set_fact:
-        filesystem: "{{ low_filesystem | replace('/', '') }}"
+        filesystem: "{{ 'root' if low_filesystem == '/' else low_filesystem | replace('/', '') }}"
         
     - name: Read device information (always use unit when probing)
       community.general.parted: device=/dev/sda unit=MiB
