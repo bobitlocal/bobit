@@ -1,4 +1,8 @@
-
-- name: Read device information (always use unit when probing)
-  community.general.parted: device=/dev/sdb unit=MiB
-  register: sdb_info
+---
+- name: Addition of harddisk space to vm
+  hosts: DKTON01ZAB01
+  gather_facts: false
+  tasks:
+    - name: Read device information (always use unit when probing)
+      community.general.parted: device=/dev/sdb unit=MiB
+      register: sdb_info
