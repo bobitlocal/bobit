@@ -21,11 +21,11 @@
         resize: true
         state: present
 
-  - name: Collect only facts about hardware
-    setup:
-      gather_subset:
-      - hardware
+    - name: Collect only facts about hardware
+      setup:
+        gather_subset:
+        - hardware
 
-  - name: Output disks
-    debug:
-      var: hostvars[inventory_hostname].ansible_devices.keys() | list
+    - name: Output disks
+      debug:
+        var: hostvars[inventory_hostname].ansible_devices.keys() | list
