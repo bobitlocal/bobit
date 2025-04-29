@@ -26,6 +26,5 @@
           job_args:
             extra_vars:
               network_device: "{{ event.payload.host_host }}"
-              network_port: "{{ event.payload.interface }}"
 
 ...
