@@ -23,9 +23,9 @@
 
     - name: Extend file system
       community.general.filesystem:
-      fstype: xfs
-      dev: /dev/mapper/cs-home
-      resizefs: true
+        fstype: xfs
+        dev: /dev/mapper/cs-home
+        resizefs: true
         
     - debug:
         msg: "{{ ansible_mounts }}"
