@@ -46,22 +46,20 @@
 
     - name: Resize existing pv
       community.general.lvg:
-        vg: "{{ cs_var }}"
+        vg: "{{ ansible_lvm.lvs[low_filesystem].vg }}"
         pvs: /dev/sda2
         pvresize: yes 
 
     - name: Extend the logical volume to take all remaining space of the PVs and resize the underlying filesystem
       community.general.lvol:
-        vg: "{{ cs_var }}"
+        vg: "{{ ansible_lvm.lvs[low_filesystem].vg }}"
         lv: "{{ low_filesytem }}"
         size: 100%PVS
         resizefs: true
-        when: ansible_lvm.lvs.get(low_filesystem) is defined
 
     - name: Extend file system
       community.general.filesystem:
         fstype: xfs
-        dev: 
+        dev: "{{ low_filesytem }}"
         resizefs: true
-      when: low_filesystem in ansible_mounts.mount 
 ...
