@@ -1,5 +1,5 @@
 ---
-- name: Zabbix test rulebook
+- name: Zabbix Test rulebook
   hosts: all
   sources:
     - ansible.eda.webhook:
@@ -10,5 +10,3 @@
       condition: event.payload is defined
       action:
         debug:
-          msg: "This is {{ event.payload.host_host }}"
-...
