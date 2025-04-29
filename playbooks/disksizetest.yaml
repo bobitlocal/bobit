@@ -20,6 +20,12 @@
         part_end: "100%"
         resize: true
         state: present
+
+    - name: Extend file system
+      community.general.filesystem:
+      fstype: xfs
+      dev: /dev/mapper/cs-home
+      resizefs: true
         
     - debug:
         msg: "{{ ansible_mounts }}"
