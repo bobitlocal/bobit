@@ -39,17 +39,10 @@
         vg: "{{ ansible_lvm.lvs[low_filesystem].vg }}"
         pvs: /dev/sda2
         pvresize: yes 
-        
-    - name: Regather facts for disk updates
-      setup:
-        filter:
-          - 'ansible_mount'
-          - 'ansible_lvm'
            
     - name: Extend the logical volume to take all remaining space of the PVs and resize the underlying filesystem
       community.general.lvol:
         vg: "{{ ansible_lvm.lvs[low_filesystem].vg }}"
         lv: "{{ low_filesystem }}"
         size: 100%FREE
-        resizefs: true
 ...
