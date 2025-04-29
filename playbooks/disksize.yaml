@@ -44,12 +44,6 @@
       community.general.lvol:
         vg: "{{ ansible_lvm.lvs[low_filesystem].vg }}"
         lv: "{{ low_filesystem }}"
-        size: 100%PVS
-        resizefs: true
-
-    - name: Extend file system
-      community.general.filesystem:
-        fstype: xfs
-        dev: "{{ low_filesystem }}"
+        size: 100%FREE
         resizefs: true
 ...
