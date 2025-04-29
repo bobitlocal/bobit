@@ -7,7 +7,8 @@
   tasks:
     - name: Enable the interface
       cisco.ios.ios_interfaces:
-        name: "{{ network_port }}"
-        enabled: true
+        config:
+          name: "{{ network_port }}"
+          enabled: true
         state: merged
 ...
