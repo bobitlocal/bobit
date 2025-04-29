@@ -18,13 +18,14 @@
 
 
     - name: Run playbook for important port that went down
-      condition: event.payload.event_name is select ("==","Number of installed packages has been changed")
+      condition: event.payload.trigger_id is select ("==",25577)
       action:
         run_job_template:
-          name: "Run Shutdown"
-          organization: "Default"
+          name: "No shutdown on port"
+          organization: "bobit.local"
           job_args:
             extra_vars:
-              problem_hosts: "{{ event.payload.host_host }}"
+              network_device: "{{ event.payload.host_host }}"
+              network_port: "{{ event.payload.interface }}"
 
 ...
