@@ -1,6 +1,9 @@
 ---
 - name: Addition of harddisk space to vm
   hosts: DKTON01CENT01
+  become: true
+  vars:
+    ansible_become_pass: password
   gather_facts: false
   tasks:
     - name: Read device information (always use unit when probing)
