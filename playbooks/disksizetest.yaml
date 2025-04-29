@@ -9,7 +9,8 @@
     - name: Read device information (always use unit when probing)
       community.general.parted: device=/dev/sda unit=MiB
       register: sda_info
-      debug:
+      
+    - debug:
         msg: "{{ sda_info }}"
         
     - name: Extend an existing partition to fill all available space
