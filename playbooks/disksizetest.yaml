@@ -5,7 +5,10 @@
   vars:
     ansible_become_pass: password
   gather_facts: true
+  
   tasks:
+    - 
+  
     - name: Read device information (always use unit when probing)
       community.general.parted: device=/dev/sda unit=MiB
       register: sda_info
@@ -21,6 +24,13 @@
         resize: true
         state: present
 
+    - name: detect lvm setup
+      setup:
+        filter: "ansible_lvm"
+        gather_subset: "!all,!min,hardware"
+      register: lvm_facts
+    - debug: var=lvm_facts
+
     - name: Extend file system
       community.general.filesystem:
         fstype: xfs
@@ -29,11 +39,6 @@
         
     - debug:
         msg: "{{ ansible_mounts }}"
-        
-    - name: Collect only facts about hardware
-      setup:
-        gather_subset:
-        - hardware
 
     - name: Output disks
       debug:
