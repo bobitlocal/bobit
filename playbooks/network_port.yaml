@@ -3,7 +3,6 @@
   hosts: "{{ network_device }}"
   gather_facts: no
   connection: network_cli
-  ansible_network_os: cisco.ios.ios
   tasks:
     - name: Enable the interface
       cisco.ios.ios_interfaces:
