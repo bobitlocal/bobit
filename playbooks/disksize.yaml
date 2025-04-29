@@ -50,6 +50,6 @@
     - name: Extend file system
       community.general.filesystem:
         fstype: xfs
-        dev: "{{ low_filesytem }}"
+        dev: "{{ low_filesystem }}"
         resizefs: true
 ...
