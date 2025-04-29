@@ -41,10 +41,10 @@
         pvresize: yes 
         
     - name: Regather facts for disk updates
-        setup:
-          filter:
-            - 'ansible_mount'
-            - 'ansible_lvm'
+      setup:
+        filter:
+          - 'ansible_mount'
+          - 'ansible_lvm'
            
     - name: Extend the logical volume to take all remaining space of the PVs and resize the underlying filesystem
       community.general.lvol:
