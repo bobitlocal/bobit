@@ -5,8 +5,8 @@
   connection: network_cli
   tasks:
     - name: Enable the interface
-      ios_interface:
+      cisco.ios.ios_interfaces:
         name: "{{ network_port }}"
         enabled: true
-        state: present
+        state: merged
 ...
