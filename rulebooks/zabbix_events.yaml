@@ -15,6 +15,7 @@
           job_args:
             extra_vars:
               low_diskspace_host: "{{ event.payload.host_host }}"
+              low_filesystem: "{{ event.payload.event_tags.filesystem[0] }}"
 
 
     - name: Run playbook for important port that went down
