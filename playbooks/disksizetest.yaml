@@ -4,7 +4,7 @@
   become: true
   vars:
     ansible_become_pass: password
-  gather_facts: false
+  gather_facts: true
   tasks:
     - name: Read device information (always use unit when probing)
       community.general.parted: device=/dev/sda unit=MiB
