@@ -27,7 +27,7 @@
         filter: "{{ ansible_lvm }}"
         gather_subset: "!all,!min,hardware"
       register: cs_var
-      when: low_filesystem in ansible_lvm.lvs
+      when: ansible_lvm.lvs.get(low_filesystem) is defined
 
     - debug:
         msg: "{{ cs_var }}"
@@ -56,7 +56,7 @@
         lv: "{{ low_filesytem }}"
         size: 100%PVS
         resizefs: true
-        when: low_filesystem in ansible_lvm.lvs
+        when: ansible_lvm.lvs.get(low_filesystem) is defined
 
     - name: Extend file system
       community.general.filesystem:
