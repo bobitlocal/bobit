@@ -27,7 +27,7 @@
         filter: "{{ low filesystem }}"
         gather_subset: "!all,!min,hardware"
       register: cs_var
-      when: low_filesystem is ansible_lvm.lvs
+      when: low_filesystem in ansible_lvm.lvs
   
     - name: Read device information (always use unit when probing)
       community.general.parted: device=/dev/sda unit=MiB
@@ -43,22 +43,22 @@
 
     - name: Resize existing pv
       community.general.lvg:
-        vg: cs
+        vg: "{{ cs_var }}"
         pvs: /dev/sda2
         pvresize: yes 
 
     - name: Extend the logical volume to take all remaining space of the PVs and resize the underlying filesystem
       community.general.lvol:
-        vg: "{{ ansible_lvm.lvs.[low_filesystem].vg] }}"
+        vg: "{{ cs_var }}"
         lv: "{{ low_filesytem }}"
         size: 100%PVS
         resizefs: true
-        when: ansible_lvm.lvs is low_filesystem
+        when: low_filesystem in ansible_lvm.lvs
 
     - name: Extend file system
       community.general.filesystem:
         fstype: xfs
         dev: 
         resizefs: true
-      when: ansible_mounts.mount is low_filesystem
+      when: low_filesystem in ansible_mounts.mount 
 ...
