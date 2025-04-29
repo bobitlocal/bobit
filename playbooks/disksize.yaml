@@ -21,7 +21,15 @@
     ansible_become_pass: password
   gather_facts: true
   tasks:
-  
+    - name: Change / to root
+      set_fact:
+        filesystem: "{{ low_filesystem | replace('/', 'root') }}"
+      when:  low_filesystem == "/"
+      
+    - name: Remove "/" from path_value
+      set_fact:
+        filesystem: "{{ low_filesystem | replace('/', '') }}"
+        
     - name: Read device information (always use unit when probing)
       community.general.parted: device=/dev/sda unit=MiB
       register: disk_info
@@ -36,14 +44,14 @@
 
     - name: Resize existing pv
       community.general.lvg:
-        vg: "{{ ansible_lvm.lvs[low_filesystem].vg }}"
+        vg: "{{ ansible_lvm.lvs[filesystem].vg }}"
         pvs: /dev/sda2
         pvresize: yes 
            
     - name: Extend the logical volume to take all remaining space of the PVs and resize the underlying filesystem
       community.general.lvol:
-        vg: "{{ ansible_lvm.lvs[low_filesystem].vg }}"
-        lv: "{{ low_filesystem }}"
+        vg: "{{ ansible_lvm.lvs[filesystem].vg }}"
+        lv: "{{ filesystem }}"
         size: +100%FREE
         resizefs: true
 ...
