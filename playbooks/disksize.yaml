@@ -1,6 +1,8 @@
 ---
 - name: Addition of harddisk space to vm
   hosts: DKTON01ZAB01
+  ansible_user: root
+  ansible_password: password
   gather_facts: false
   tasks:
     -  name: Resize VM Disk
@@ -14,6 +16,11 @@
          size: +5G
          state: resized
 
+- name: Disk changes on problem host
+  hosts: "{{ low_diskspace_host }}"
+  gather_facts: true
+  tasks:
+  
     - name: Read device information (always use unit when probing)
       community.general.parted: device=/dev/sda unit=MiB
       register: disk_info
