@@ -21,6 +21,13 @@
     ansible_become_pass: password
   gather_facts: true
   tasks:
+
+    - name: detect lvm setup
+      setup:
+        filter: "{{ low filesystem }}"
+        gather_subset: "!all,!min,hardware"
+      register: cs_var
+      when: low_filesystem is ansible_lvm.lvs
   
     - name: Read device information (always use unit when probing)
       community.general.parted: device=/dev/sda unit=MiB
