@@ -1,1 +1,12 @@
-
+---
+- name: Enable Switch Port
+  hosts: "{{ network_device }}"
+  gather_facts: no
+  connection: network_cli
+  tasks:
+    - name: Enable the interface
+      ios_interface:
+        name: "{{ network_port }}"
+        enabled: true
+        state: present
+...
