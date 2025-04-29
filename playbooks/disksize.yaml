@@ -24,7 +24,7 @@
 
     - name: detect lvm setup
       setup:
-        filter: "{{ low filesystem }}"
+        filter: "{{ ansible_lvm }}"
         gather_subset: "!all,!min,hardware"
       register: cs_var
       when: low_filesystem in ansible_lvm.lvs
