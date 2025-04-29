@@ -20,7 +20,10 @@
         part_end: "100%"
         resize: true
         state: present
-
+        
+    - debug:
+        msg: "{{ ansible_mounts }}"" 
+        
     - name: Collect only facts about hardware
       setup:
         gather_subset:
