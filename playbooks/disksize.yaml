@@ -44,5 +44,6 @@
       community.general.lvol:
         vg: "{{ ansible_lvm.lvs[low_filesystem].vg }}"
         lv: "{{ low_filesystem }}"
-        size: 100%FREE
+        size: +100%FREE
+        resizefs: true
 ...
