@@ -1,6 +1,6 @@
 ---
 - name: Addition of harddisk space to vm
-  hosts: DKTON01ZAB01
+  hosts: DKTON01CENT01
   gather_facts: false
   tasks:
     -  name: Resize VM Disk
@@ -14,20 +14,36 @@
          size: +5G
          state: resized
 
-- name: Resize the correct disk within the VM
-  hosts: "{{ low_diskspace_host }}"
-  gather_facts: false
-  tasks:
-    - name: Register partition info
-      community.general.parted: device=/dev/sdb unit=MiB
-      register: sdb_info
-      
+    - name: Read device information (always use unit when probing)
+      community.general.parted: device=/dev/sda unit=MiB
+      register: disk_info
+
     - name: Extend an existing partition to fill all available space
-        community.general.parted:
-        device: /dev/sdb
-        number: "{{ sdb_info.partitions | length }}"
+      community.general.parted:
+        device: /dev/sda
+        number: "{{ sda_info.partitions | length }}"
         part_end: "100%"
         resize: true
         state: present
-      when: sdb_info.partiting | length == {{payload size ????}}
+
+    - name: Resize existing pv
+      community.general.lvg:
+        vg: cs
+        pvs: /dev/sda2
+        pvresize: yes 
+
+    - name: Extend the logical volume to take all remaining space of the PVs and resize the underlying filesystem
+      community.general.lvol:
+        vg: "{{ ansible_lvs.[low_filesystem].vg] }}"
+        lv: {{ low_filesytem }}
+        size: 100%PVS
+        resizefs: true
+        when: ansible_lvm.lvs is low_filesystem
+
+    - name: Extend file system
+      community.general.filesystem:
+        fstype: xfs
+        dev: 
+        resizefs: true
+      when: ansible_mounts.mount is low_filesystem
 ...
