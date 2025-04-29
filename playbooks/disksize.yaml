@@ -35,7 +35,7 @@
     - name: Extend the logical volume to take all remaining space of the PVs and resize the underlying filesystem
       community.general.lvol:
         vg: "{{ ansible_lvm.[low_filesystem].vg] }}"
-        lv: {{ low_filesytem }}
+        lv: "{{ low_filesytem }}"
         size: 100%PVS
         resizefs: true
         when: ansible_lvm.lvs is low_filesystem
