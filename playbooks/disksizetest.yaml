@@ -24,6 +24,19 @@
         resize: true
         state: present
 
+    - name: Resize existing pv
+      community.general.lvg:
+        vg: cs
+        pvs: /dev/sda2
+        pvresize: yes 
+
+    - name: Extend the logical volume to take all remaining space of the PVs and resize the underlying filesystem
+      community.general.lvol:
+        vg: cs
+        lv: cs-home
+        size: 100%PVS
+        resizefs: true 
+        
     - name: detect lvm setup
       setup:
         filter: "ansible_lvm"
