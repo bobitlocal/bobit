@@ -43,7 +43,7 @@
         pvs: /dev/sda2
         pvresize: yes 
            
-    - name: Extend the logical volume to take all remaining space of the PVs and resize the underlying filesystem
+    - name: Extend the logical volume to consume all remaining space in the volume group
       community.general.lvol:
         vg: "{{ ansible_lvm.lvs[filesystem].vg }}"
         lv: "{{ filesystem }}"
