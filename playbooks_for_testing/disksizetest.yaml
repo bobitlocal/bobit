@@ -1,1 +1,57 @@
+---
+- name: Addition of harddisk space to vm
+  hosts: DKTON01CENT01
+  become: true
+  vars:
+    ansible_become_pass: password
+  gather_facts: true
+  
+  tasks: 
+  
+    - name: Read device information (always use unit when probing)
+      community.general.parted: device=/dev/sda unit=MiB
+      register: sda_info
+      
+    - debug:
+        msg: "{{ sda_info }}"
+        
+    - name: Extend an existing partition to fill all available space
+      community.general.parted:
+        device: /dev/sda
+        number: "{{ sda_info.partitions | length }}"
+        part_end: "100%"
+        resize: true
+        state: present
 
+    - name: Resize existing pv
+      community.general.lvg:
+        vg: cs
+        pvs: /dev/sda2
+        pvresize: yes 
+
+    - name: Extend the logical volume to take all remaining space of the PVs and resize the underlying filesystem
+      community.general.lvol:
+        vg: cs
+        lv: home
+        size: +100%FREE
+        resizefs: true 
+        
+    - name: detect lvm setup
+      setup:
+        filter: "ansible_lvm"
+        gather_subset: "!all,!min,hardware"
+      register: lvm_facts
+    - debug: var=lvm_facts
+
+    - name: Extend file system
+      community.general.filesystem:
+        fstype: xfs
+        dev: /dev/mapper/cs-home
+        resizefs: true
+        
+    - debug:
+        msg: "{{ ansible_mounts }}"
+
+    - name: Output disks
+      debug:
+        var: hostvars[inventory_hostname].ansible_devices.keys() | list
