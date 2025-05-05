@@ -19,7 +19,7 @@
 
 
     - name: Run playbook for important port that went down
-      condition: event.payload.event_name is select ("==", "Cisco IOS: Interface")
+      condition: event.payload.trigger_id is select ("==", "Cisco IOS: Interface")
       action:
         run_job_template:
           name: "No shutdown on port"
